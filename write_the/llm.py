@@ -22,7 +22,11 @@ class LLM:
         self.prompt_size = self.number_of_tokens(prompt.template)
         self.temperature = temperature
         self.gpt_4 = gpt_4
-        self.model_name = "gpt-4" if self.gpt_4 else "text-davinci-003"
+
+        os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"
+        print(os.environ["OPENAI_API_KEY"])
+        self.model_name = "gpt-3.5-turbo-instruct"
+
         self.max_tokens = 4097 * 2 if self.gpt_4 else 4097
 
     async def run(self, code, **kwargs):
